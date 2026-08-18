@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppLayout } from "@/shared/components/AppLayout";
 import { SlotPicker } from "@/features/appointments/components/SlotPicker";
 import { useBookAppointment } from "@/features/appointments/hooks/useAppointments";
 import type { ApiError } from "@/shared/api/types";
@@ -42,7 +41,6 @@ export function BookAppointmentPage() {
   }
 
   return (
-    <AppLayout>
       <div className="max-w-lg space-y-6">
         <h1 className="text-lg font-semibold text-slate-900">Book an appointment</h1>
 
@@ -106,6 +104,5 @@ export function BookAppointmentPage() {
           {bookMutation.isPending ? "Booking…" : "Confirm appointment"}
         </button>
       </div>
-    </AppLayout>
   );
 }
