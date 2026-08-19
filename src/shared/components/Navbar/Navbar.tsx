@@ -11,7 +11,7 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between bg-white px-8 py-4 shadow-sm">
+    <nav className="flex h-16 items-center justify-between bg-white px-8 shadow-sm">
       <Link to="/" className="flex items-center gap-2">
         <img
           src={pddlLogo}
