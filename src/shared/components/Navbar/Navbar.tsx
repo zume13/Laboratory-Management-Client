@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="flex item-center justify-between px-8 py-4 bg-white  shadow-sm">
+    <nav className="flex items-center justify-between px-8 py-4 bg-white  shadow-sm">
       <div className="flex items-center gap-2">
         <img src="src/assets/PDDL Logo.png" alt="PDDL Logo" className="h-9 w-9 object-contain"></img>
         <div className="leading-tight">
