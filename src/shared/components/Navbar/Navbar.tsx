@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="flex item-center justify-between px-8 py-4 bg-white  shadow-sm">
       <div className="flex items-center gap-2">
-        <img src="" alt="PDDL Logo" className="h-9 w-9 object-contain"></img>
+        <img src="src/assets/PDDL Logo.png" alt="PDDL Logo" className="h-9 w-9 object-contain"></img>
         <div className="leading-tight">
           <div className="text-xl font-extrabold text-green-700">PDDL</div>
           <div className="text-[10px] font-medium text-green-700 -mt-1">Diagnostic Laboratory</div>
