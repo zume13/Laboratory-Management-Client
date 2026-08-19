@@ -1,8 +1,10 @@
+import heroImage from "@/assets/hero-image.png";
+
 export default function LandingPage() {
   return (
     <header className="relative min-h-screen flex items-center">
       <img
-        src="src/assets/image 9.png"
+        src={heroImage}
         alt="PDDL laboratory"
         className="absolute inset-0 w-full h-full object-cover"      
       />

@@ -1,40 +1,66 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import pddlLogo from "@/assets/PDDL-Logo.png";
 
 function navLinkClass({ isActive }: { isActive: boolean }) {
-  return `text-xl font-large pb-1 ${
+  return `text-base font-medium pb-1 transition-colors ${
     isActive
-      ?  "text-green-700 border-b-2 border-green-600"
-      :  "text-gray-700 hover:text-green-600"
-  }` ;
+      ? "text-green-700 border-b-2 border-green-600"
+      : "text-gray-700 hover:text-green-600"
+  }`;
 }
-
-
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-16 py-3 bg-white shadow-sm">
-      <div className="flex items-center gap-2">
-        <Link to="/" className="flex items-center gap-2">
-          <img src="src/assets/PDDL Logo.png" alt="PDDL Logo" className="h-12 w-12 object-contain"></img>
-        </Link>
-        <div className="leading-tight">
-          <div className="text-4xl font-extrabold text-green-700">PDDL</div>
-          <div className="text-[15px] font-medium text-green-700 -mt-1">Diagnostic Laboratory</div>
-        </div>
-      </div>
-      
+    <nav className="flex items-center justify-between bg-white px-8 py-4 shadow-sm">
+      <Link to="/" className="flex items-center gap-2">
+        <img
+          src={pddlLogo}
+          alt="PDDL Logo"
+          className="h-10 w-10 object-contain"
+        />
 
-      <ul className="flex gap-10 list-none pl-64">
-        <li><NavLink to="/" className={navLinkClass}>Home</NavLink></li>
-        <li><NavLink to="/services" className={navLinkClass}>Services</NavLink></li>
-        <li><NavLink to="/about" className={navLinkClass}>About Us</NavLink></li>
-        <li><NavLink to="/contact" className={navLinkClass}>Contact Us</NavLink></li>
+        <div className="leading-tight">
+          <div className="text-xl font-extrabold text-green-700">
+            PDDL
+          </div>
+          <div className="-mt-1 text-[11px] font-medium text-green-700">
+            Diagnostic Laboratory
+          </div>
+        </div>
+      </Link>
+
+      <ul className="flex items-center gap-8">
+        <li>
+          <NavLink to="/" className={navLinkClass}>
+            Home
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/services" className={navLinkClass}>
+            Services
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/about" className={navLinkClass}>
+            About Us
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/contact" className={navLinkClass}>
+            Contact Us
+          </NavLink>
+        </li>
       </ul>
 
-      <button className="bg-green-600 hover:bg-green-700 transition-colors text-white px-6 py-2.5 rounded-md text-xl font-semibold">
+      <Link
+        to="/login"
+        className="rounded-md bg-green-600 px-5 py-2 text-base font-semibold text-white transition-colors hover:bg-green-700"
+      >
         Log in
-      </button>
-      
+      </Link>
     </nav>
   );
 }
