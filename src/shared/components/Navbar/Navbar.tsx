@@ -12,11 +12,7 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 
 export default function Navbar() {
   return (
-<<<<<<< HEAD
-    <nav className="flex items-center justify-between px-8 py-4 bg-white  shadow-sm">
-=======
     <nav className="flex items-center justify-between px-16 py-3 bg-white shadow-sm">
->>>>>>> 7430b8b9457d617abd25581d0dc1c465736ab221
       <div className="flex items-center gap-2">
         <Link to="/" className="flex items-center gap-2">
           <img src="src/assets/PDDL Logo.png" alt="PDDL Logo" className="h-12 w-12 object-contain"></img>
