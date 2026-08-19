@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 body {
+  overflow: hidden;
+
   font-family:
     ui-sans-serif,
     system-ui,
