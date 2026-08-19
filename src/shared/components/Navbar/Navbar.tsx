@@ -2,37 +2,20 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="border-b bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link to="/" className="text-xl font-bold">
-          Laboratory System
-        </Link>
+    <nav className="flex item-center justify-between px-8 py-4 bg-white  shadow-sm">
+      <span className="text-xl font-extrabold text-green-700">PDDL</span>
 
-        {/* Navigation */}
-        <div className="flex items-center gap-6">
-          <Link
-            to="/"
-            className="text-sm font-medium text-gray-700 hover:text-gray-900"
-          >
-            Home
-          </Link>
+      <ul className="flex gap-8 list-none">
+        <li><a href="" className="text-sm font-medium text-gray-700 hover:text-green-600">Home</a></li>
+        <li><a href="" className="text-sm font-medium text-gray-700 hover:text-green-600">Services</a></li>
+        <li><a href="" className="text-sm font-medium text-gray-700 hover:text-green-600">About Us</a></li>
+        <li><a href="" className="text-sm font-medium text-gray-700 hover:text-green-600">Contact Us</a></li>
+      </ul>
 
-          <Link
-            to="/login"
-            className="text-sm font-medium text-gray-700 hover:text-gray-900"
-          >
-            Login
-          </Link>
-
-          <Link
-            to="/register"
-            className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
-          >
-            Sign Up
-          </Link>
-        </div>
-      </div>
+      <button className="bg-green-600 hover:bg-green-700 transition-colors text-white px-6 py-2.5 rounded-md text-sm font-semibold">
+        Log in
+      </button>
+      
     </nav>
   );
 }
