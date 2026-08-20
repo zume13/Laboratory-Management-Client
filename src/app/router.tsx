@@ -9,6 +9,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
 
+import DashboardPage from "@/pages/patient/DashboardPage";
 import { BookAppointmentPage } from "@/pages/patient/BookAppointmentPage";
 import { MyAppointmentsPage } from "@/pages/patient/MyAppointmentsPage";
 
@@ -31,7 +32,7 @@ function HomeRedirect() {
 
   switch (user.role) {
     case "Patient":
-      return <Navigate to="/patient/appointments" replace />;
+      return <Navigate to="/patient/dashboard" replace />;
 
     case "Administrator":
       return <Navigate to="/admin/system-health" replace />;
@@ -56,6 +57,15 @@ export function AppRouter() {
       <Route path="/home" element={<HomeRedirect />} />
 
       <Route element={<PatientLayout />}>
+        <Route
+          path="/patient/dashboard"
+          element={
+            <RoleGuard allow={["Patient"]}>
+              <DashboardPage />
+            </RoleGuard>
+          }
+        />
+
         <Route
           path="/patient/appointments"
           element={
@@ -104,6 +114,10 @@ export function AppRouter() {
       />
 
       <Route path="*" element={<Navigate to="/" replace />} />
+
+      <Route element={<PatientLayout />}>
+        <Route path="/test/patient-layout" element={<DashboardPage />} />
+      </Route>
     </Routes>
   );
 }
