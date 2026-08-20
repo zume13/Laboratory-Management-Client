@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 body {
-  overflow: hidden;
-
+  margin: 0;
   font-family:
     ui-sans-serif,
     system-ui,
     -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
 }
