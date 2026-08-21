@@ -12,6 +12,7 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 export default function Navbar() {
   return (
     <nav className="flex h-16 items-center justify-between bg-white px-8 shadow-sm">
+      {/* Logo */}
       <Link to="/" className="flex items-center gap-2">
         <img
           src={pddlLogo}
@@ -23,44 +24,48 @@ export default function Navbar() {
           <div className="text-xl font-extrabold text-green-700">
             PDDL
           </div>
+
           <div className="-mt-1 text-[11px] font-medium text-green-700">
             Diagnostic Laboratory
           </div>
         </div>
       </Link>
 
-      <ul className="flex items-center gap-8">
-        <li>
-          <NavLink to="/" className={navLinkClass}>
-            Home
-          </NavLink>
-        </li>
+      {/* Navigation + Login */}
+      <div className="flex items-center gap-8">
+        <ul className="flex items-center gap-8">
+          <li>
+            <NavLink to="/" className={navLinkClass}>
+              Home
+            </NavLink>
+          </li>
 
-        <li>
-          <NavLink to="/services" className={navLinkClass}>
-            Services
-          </NavLink>
-        </li>
+          <li>
+            <NavLink to="/services" className={navLinkClass}>
+              Services
+            </NavLink>
+          </li>
 
-        <li>
-          <NavLink to="/about" className={navLinkClass}>
-            About Us
-          </NavLink>
-        </li>
+          <li>
+            <NavLink to="/about" className={navLinkClass}>
+              About Us
+            </NavLink>
+          </li>
 
-        <li>
-          <NavLink to="/contact" className={navLinkClass}>
-            Contact Us
-          </NavLink>
-        </li>
-      </ul>
+          <li>
+            <NavLink to="/contact" className={navLinkClass}>
+              Contact Us
+            </NavLink>
+          </li>
+        </ul>
 
-      <Link
-        to="/login"
-        className="rounded-md bg-green-600 px-5 py-2 text-base font-semibold text-white transition-colors hover:bg-green-700"
-      >
-        Log in
-      </Link>
+        <Link
+          to="/login"
+          className="rounded-md bg-green-600 px-5 py-2 text-base font-semibold text-white transition-colors hover:bg-green-700"
+        >
+          Log in
+        </Link>
+      </div>
     </nav>
   );
 }
