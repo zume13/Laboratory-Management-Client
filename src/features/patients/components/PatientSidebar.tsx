@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   CalendarDays,
-  FlaskConical,
   FileText,
   ChevronLeft,
   ChevronRight,
@@ -21,12 +20,7 @@ const navigationItems = [
     icon: CalendarDays,
   },
   {
-    label: "Lab Requests",
-    path: "/patient/laboratory",
-    icon: FlaskConical,
-  },
-  {
-    label: "Results",
+    label: "Lab Results",
     path: "/patient/results",
     icon: FileText,
   },

@@ -10,7 +10,6 @@ import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
 
 import DashboardPage from "@/pages/patient/DashboardPage";
-import { BookAppointmentPage } from "@/pages/patient/BookAppointmentPage";
 import { MyAppointmentsPage } from "@/pages/patient/MyAppointmentsPage";
 
 import { useAuth } from "@/features/auth/store/AuthContext";
@@ -71,15 +70,6 @@ export function AppRouter() {
           element={
             <RoleGuard allow={["Patient"]}>
               <MyAppointmentsPage />
-            </RoleGuard>
-          }
-        />
-
-        <Route
-          path="/patient/book"
-          element={
-            <RoleGuard allow={["Patient"]}>
-              <BookAppointmentPage />
             </RoleGuard>
           }
         />
