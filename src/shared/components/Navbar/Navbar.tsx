@@ -31,7 +31,7 @@ export default function Navbar() {
         </div>
       </Link>
 
-      {/* Navigation + Login */}
+      {/* Navigation + Auth */}
       <div className="flex items-center gap-8">
         <ul className="flex items-center gap-8">
           <li>
@@ -59,12 +59,22 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <Link
-          to="/login"
-          className="rounded-md bg-green-600 px-5 py-2 text-base font-semibold text-white transition-colors hover:bg-green-700"
-        >
-          Log in
-        </Link>
+        {/* Auth buttons */}
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="rounded-lg px-4 py-2 font-semibold text-green-700 transition hover:bg-green-50"
+          >
+            Log In
+          </Link>
+
+          <Link
+            to="/register"
+            className="rounded-lg bg-green-600 px-4 py-2 font-semibold text-white transition hover:bg-green-700"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </nav>
   );
