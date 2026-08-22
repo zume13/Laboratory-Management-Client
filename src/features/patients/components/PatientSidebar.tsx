@@ -66,6 +66,7 @@ export default function PatientSidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              end
               className={sidebarLinkClass}
               title={isCollapsed ? item.label : undefined}
             >

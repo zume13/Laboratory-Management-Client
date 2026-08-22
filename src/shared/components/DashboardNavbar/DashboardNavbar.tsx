@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Bell,
+  ChevronDown,
+  UserRound,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import pddlLogo from "@/assets/PDDL-Logo.png";
 
 export default function DashboardNavbar() {
@@ -34,20 +41,7 @@ export default function DashboardNavbar() {
           className="relative rounded-full p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-green-700"
           aria-label="Notifications"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.8}
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M14.857 17.082a23.848 23.848 0 0 1-5.714 0A8.968 8.968 0 0 1 6 15.75V11a6 6 0 1 1 12 0v4.75a8.968 8.968 0 0 1-3.143 1.332ZM9 17.25a3 3 0 0 0 6 0"
-            />
-          </svg>
+          <Bell className="h-5 w-5" strokeWidth={1.8} />
 
           <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500" />
         </button>
@@ -58,6 +52,7 @@ export default function DashboardNavbar() {
             type="button"
             onClick={() => setIsProfileOpen((open) => !open)}
             className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-gray-50"
+            aria-label="User menu"
           >
             {/* Avatar */}
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-700">
@@ -76,48 +71,53 @@ export default function DashboardNavbar() {
             </div>
 
             {/* Chevron */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
+            <ChevronDown
               className={`h-4 w-4 text-gray-500 transition-transform ${
                 isProfileOpen ? "rotate-180" : ""
               }`}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m19.5 8.25-7.5 7.5-7.5-7.5"
-              />
-            </svg>
+              strokeWidth={1.8}
+            />
           </button>
 
           {/* Profile menu */}
           {isProfileOpen && (
-            <div className="absolute right-0 z-50 mt-2 w-52 rounded-lg border bg-white py-2 shadow-lg">
+            <div className="absolute right-0 z-50 mt-3 w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl">
               <Link
                 to="/patient/profile"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700"
+                className="flex items-center gap-3 px-5 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 hover:text-green-700"
               >
-                My Profile
+                <UserRound
+                  className="h-5 w-5 text-gray-400"
+                  strokeWidth={1.8}
+                />
+
+                <span>Profile</span>
               </Link>
 
               <Link
                 to="/patient/settings"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-700"
+                className="flex items-center gap-3 px-5 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 hover:text-green-700"
               >
-                Settings
+                <Settings
+                  className="h-5 w-5 text-gray-400"
+                  strokeWidth={1.8}
+                />
+
+                <span>Settings</span>
               </Link>
 
-              <div className="my-1 border-t" />
+              <div className="my-1 border-t border-gray-200" />
 
               <button
                 type="button"
-                className="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                className="flex w-full items-center gap-3 px-5 py-3 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
               >
-                Log out
+                <LogOut
+                  className="h-5 w-5"
+                  strokeWidth={1.8}
+                />
+
+                <span>Log Out</span>
               </button>
             </div>
           )}
