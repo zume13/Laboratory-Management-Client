@@ -1,7 +1,6 @@
 import {
   CalendarDays,
   Clock3,
-  MapPin,
   CheckCircle2,
   CircleAlert,
 } from "lucide-react";
@@ -12,7 +11,6 @@ const upcomingAppointments = [
     test: "Complete Blood Count",
     date: "August 24, 2026",
     time: "9:30 AM",
-    location: "PDDL Diagnostic Laboratory",
     status: "Scheduled",
   },
 ];
@@ -23,7 +21,6 @@ const pastAppointments = [
     test: "Lipid Profile",
     date: "August 15, 2026",
     time: "10:00 AM",
-    location: "PDDL Diagnostic Laboratory",
     status: "Completed",
   },
   {
@@ -31,7 +28,6 @@ const pastAppointments = [
     test: "Fasting Blood Sugar",
     date: "August 8, 2026",
     time: "8:30 AM",
-    location: "PDDL Diagnostic Laboratory",
     status: "Completed",
   },
   {
@@ -39,7 +35,6 @@ const pastAppointments = [
     test: "Urinalysis",
     date: "July 29, 2026",
     time: "9:00 AM",
-    location: "PDDL Diagnostic Laboratory",
     status: "Completed",
   },
 ];
@@ -97,11 +92,6 @@ export function MyAppointmentsPage() {
                         <Clock3 className="h-4 w-4 text-gray-400" />
                         {appointment.time}
                       </div>
-
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-gray-400" />
-                        {appointment.location}
-                      </div>
                     </div>
                   </div>
 
@@ -152,7 +142,6 @@ export function MyAppointmentsPage() {
                   <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
                     <span>{appointment.date}</span>
                     <span>{appointment.time}</span>
-                    <span>{appointment.location}</span>
                   </div>
                 </div>
 
