@@ -11,6 +11,7 @@ import RegisterPage from "@/pages/auth/RegisterPage";
 
 import DashboardPage from "@/pages/patient/DashboardPage";
 import { MyAppointmentsPage } from "@/pages/patient/MyAppointmentsPage";
+import { LabResultsPage } from "@/pages/patient/LabResultsPage";
 
 import { useAuth } from "@/features/auth/store/AuthContext";
 
@@ -73,6 +74,15 @@ export function AppRouter() {
             </RoleGuard>
           }
         />
+
+        <Route
+          path="/patient/results"
+          element={
+            <RoleGuard allow={["Patient"]}>
+              <LabResultsPage />
+            </RoleGuard>
+          }
+        />
       </Route>
 
       <Route
@@ -110,12 +120,15 @@ export function AppRouter() {
         <Route 
           path="/test/patient-layout"
           element={<DashboardPage />} />
-      </Route>
 
-      <Route element={<PatientLayout />}>
         <Route
           path="/test/patient-appointments"
           element={<MyAppointmentsPage />}
+        />
+
+        <Route
+          path="/test/patient/results"
+          element={<LabResultsPage />}
         />
       </Route>
     </Routes>
