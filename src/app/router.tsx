@@ -105,8 +105,18 @@ export function AppRouter() {
 
       <Route path="*" element={<Navigate to="/" replace />} />
 
+        {/*for testing*/}
       <Route element={<PatientLayout />}>
-        <Route path="/test/patient-layout" element={<DashboardPage />} />
+        <Route 
+          path="/test/patient-layout"
+          element={<DashboardPage />} />
+      </Route>
+
+      <Route element={<PatientLayout />}>
+        <Route
+          path="/test/patient-appointments"
+          element={<MyAppointmentsPage />}
+        />
       </Route>
     </Routes>
   );
