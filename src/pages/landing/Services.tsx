@@ -1,12 +1,12 @@
 import instantDeliveryIcon from "@/assets/services-icons/instant-delivery.png";
-import precisionEquipmentIcon from "@/assests/services-icons/precision-equipment.png";
+import precisionEquipmentIcon from "@/assets/services-icons/precision-equipment.png";
 import certifiedProfessionalsIcon from "@/assets/services-icons/certified-professionals.png";
 import hematologyIcon from "@/assets/services-icons/hematology.png";
 import clinicalChemistryIcon from "@/assets/services-icons/clinical-chemistry.png";
 import serologyIcon from "@/assets/services-icons/serology.png";
 import clinicalMicroscopyIcon from "@/assets/services-icons/clinical-microscopy.png";
-import hispathologyIcon from "@/assets/services-icons/histopathology.png";
-import specialExaminationIcon from "@/assets/services-icons/special-examination.png";
+import hispathologyIcon from "@/assets/services-icons/hispathology.png";
+import specialExaminationIcon from "@/assets/services-icons/special-examinations.png";
 import ServiceCard from "@/shared/components/ServicesCards/ServicesCards";
 
 const reasons = [
@@ -55,7 +55,7 @@ export default function Services() {
                 </h2>
                 <div className="w-16 h-1 bg-green-600 mx-auto mb-10" />
 
-                <div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                     {services.map ((service) => (
                         <ServiceCard 
                             key={service.title}
