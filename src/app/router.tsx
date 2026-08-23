@@ -4,7 +4,7 @@ import { RoleGuard } from "./RoleGuard";
 import PublicLayout from "@/layouts/PublicLayout";
 import PatientLayout from "@/layouts/PatientLayout";
 
-import LandingPage from "@/pages/LandingPage";
+import LandingPage from "@/pages/landing/LandingPage";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
