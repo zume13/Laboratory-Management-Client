@@ -3,7 +3,7 @@ import pddlLogo from "@/assets/PDDL-Logo.png";
 
 export default function Navbar() {
   return (
-    <nav className="flex h-16 items-center justify-between bg-white px-8 shadow-sm">
+    <nav className="sticky top-0 z-50 flex h-16 items-center justify-between bg-white px-8 shadow-sm">
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2">
         <img
