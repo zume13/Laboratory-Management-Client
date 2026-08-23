@@ -1,17 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import pddlLogo from "@/assets/PDDL-Logo.png";
-
-function navLinkClass({ isActive }: { isActive: boolean }) {
-  return `text-base font-medium pb-1 transition-colors ${
-    isActive
-      ? "text-green-700 border-b-2 border-green-600"
-      : "text-gray-700 hover:text-green-600"
-  }`;
-}
 
 export default function Navbar() {
   return (
-    <nav className="flex h-16 items-center justify-between bg-white px-8 shadow-sm">
+    <nav className="sticky top-0 z-50 flex h-16 items-center justify-between bg-white px-8 shadow-sm">
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2">
         <img
@@ -35,27 +27,27 @@ export default function Navbar() {
       <div className="flex items-center gap-8">
         <ul className="flex items-center gap-8">
           <li>
-            <NavLink to="/" className={navLinkClass}>
+            <a href="#home" className="text-base font-medium pb-1 tect-green-700 border-b-2 border-green-600">
               Home
-            </NavLink>
+            </a>
           </li>
 
           <li>
-            <NavLink to="/services" className={navLinkClass}>
+            <a href="#services" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
               Services
-            </NavLink>
+            </a>
           </li>
 
           <li>
-            <NavLink to="/about" className={navLinkClass}>
+            <a href="#about" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
               About Us
-            </NavLink>
+            </a>
           </li>
 
           <li>
-            <NavLink to="/contact" className={navLinkClass}>
+            <a href="#contact" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
               Contact Us
-            </NavLink>
+            </a>
           </li>
         </ul>
 
