@@ -3,13 +3,14 @@ import { RoleGuard } from "./RoleGuard";
 
 import PublicLayout from "@/layouts/PublicLayout";
 import PatientLayout from "@/layouts/PatientLayout";
+import StaffLayout from "@/layouts/StaffLayout";
 
 import LandingPage from "@/pages/landing/LandingPage";
 import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
 
-import DashboardPage from "@/pages/patient/DashboardPage";
+import PatientDashboardPage from "@/pages/patient/PatientDashboardPage";
 import { MyAppointmentsPage } from "@/pages/patient/MyAppointmentsPage";
 import { LabResultsPage } from "@/pages/patient/LabResultsPage";
 
@@ -61,7 +62,7 @@ export function AppRouter() {
           path="/patient/dashboard"
           element={
             <RoleGuard allow={["Patient"]}>
-              <DashboardPage />
+              <PatientDashboardPage />
             </RoleGuard>
           }
         />
@@ -115,11 +116,11 @@ export function AppRouter() {
 
       <Route path="*" element={<Navigate to="/" replace />} />
 
-        {/*for testing*/}
+        {/* Patient layout testing */}
       <Route element={<PatientLayout />}>
         <Route 
           path="/test/patient-layout"
-          element={<DashboardPage />} />
+          element={<PatientDashboardPage />} />
 
         <Route
           path="/test/patient-appointments"
@@ -129,6 +130,24 @@ export function AppRouter() {
         <Route
           path="/test/patient/results"
           element={<LabResultsPage />}
+        />
+      </Route>
+
+      {/* Staff layout testing */}
+      <Route element={<StaffLayout />}>
+        <Route
+          path="/test/staff-layout"
+          element={
+            <div className="p-8">
+              <h1 className="text-2xl font-bold text-gray-900">
+                Staff Dashboard
+              </h1>
+
+              <p className="mt-1 text-sm text-gray-500">
+                Staff layout testing page.
+              </p>
+            </div>
+          }
         />
       </Route>
     </Routes>
