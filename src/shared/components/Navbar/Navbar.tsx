@@ -1,7 +1,38 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import pddlLogo from "@/assets/PDDL-Logo.png";
 
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "services", label: "Services" },
+  { id: "aboutUs", label: "AboutUs" },
+  { id: "contactUs", label: "ContactUs" },
+];
+
 export default function Navbar() {
+  const [activeTab, setActiveTab] = useState("home");
+
+  useEffect(() => {
+    const tabs = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveTab(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
+
+    tabs.forEach((tab) => observer.observe(tab));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <nav className="sticky top-0 z-50 flex h-16 items-center justify-between bg-white px-8 shadow-sm">
       {/* Logo */}
@@ -26,29 +57,21 @@ export default function Navbar() {
       {/* Navigation + Auth */}
       <div className="flex items-center gap-8">
         <ul className="flex items-center gap-8">
-          <li>
-            <a href="#home" className="text-base font-medium pb-1 tect-green-700 border-b-2 border-green-600">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <a href="#services" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
-              Services
-            </a>
-          </li>
-
-          <li>
-            <a href="#about" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
-              About Us
-            </a>
-          </li>
-
-          <li>
-            <a href="#contact" className="text-base font-medium pb-1 text-gray-700 hover:text-green-600 transition-colors">
-              Contact Us
-            </a>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.id}>
+              
+              <a
+                href={`#${item.id}`}
+                className={`text-base font-medium pb-1 transition-colors ${
+                  activeTab === item.id
+                    ? "text-green-700 border-b-2 border-green-600"
+                    : "text-gray-700 hover:text-green-600"
+                }`}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         {/* Auth buttons */}
