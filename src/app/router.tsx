@@ -14,6 +14,8 @@ import PatientDashboardPage from "@/pages/patient/PatientDashboardPage";
 import { MyAppointmentsPage } from "@/pages/patient/MyAppointmentsPage";
 import { LabResultsPage } from "@/pages/patient/LabResultsPage";
 
+import StaffDashboardPage from "@/pages/staff/StaffDashboardPage";
+
 import { useAuth } from "@/features/auth/store/AuthContext";
 
 function HomeRedirect() {
@@ -92,8 +94,6 @@ export function AppRouter() {
           <RoleGuard
             allow={[
               "MedicalTechnologist",
-              "Pathologist",
-              "Phlebotomist",
             ]}
           >
             <div className="p-8 text-sm text-slate-500">
@@ -137,17 +137,7 @@ export function AppRouter() {
       <Route element={<StaffLayout />}>
         <Route
           path="/test/staff-layout"
-          element={
-            <div className="p-8">
-              <h1 className="text-2xl font-bold text-gray-900">
-                Staff Dashboard
-              </h1>
-
-              <p className="mt-1 text-sm text-gray-500">
-                Staff layout testing page.
-              </p>
-            </div>
-          }
+          element={<StaffDashboardPage />}
         />
       </Route>
     </Routes>
