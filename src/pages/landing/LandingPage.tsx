@@ -1,3 +1,4 @@
+import Footer from "@/shared/components/Footer/Footer";
 import AboutUs from "./AboutUs";
 import Hero from "./Hero";
 import Services from "./Services";
@@ -8,6 +9,7 @@ export default function LandingPage() {
             <Hero />
             <Services />
             <AboutUs />
+            <Footer />
         </>
     );
 }
