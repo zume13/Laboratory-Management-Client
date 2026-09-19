@@ -23,12 +23,19 @@ export interface PatientFileHistoryEntry {
   pdfFileName: string | null;
 }
 
+export type LabRequestStatus =
+  | "Requested"
+  | "Result Pending"
+  | "Ready for Release"
+
 export interface PendingLabRequest {
   id: string;
   patientId: string;
   patientName: string;
   testCategory: TestCategoryOption;
   requestedAt: string;
+  status: LabRequestStatus;
+  clinicalDetails: string;
 }
 
 export interface ReleasedResultRow {

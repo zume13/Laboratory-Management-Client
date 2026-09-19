@@ -106,6 +106,8 @@ export const MOCK_PENDING_REQUESTS: PendingLabRequest[] = [
     patientName: "Gabriel Kristoff Y. Salvador",
     testCategory: TEST_CATEGORIES[1],
     requestedAt: "May 18, 2026 · 11:11",
+    status: "Result Pending",
+    clinicalDetails: "",
   },
   {
     id: "req-2",
@@ -113,6 +115,8 @@ export const MOCK_PENDING_REQUESTS: PendingLabRequest[] = [
     patientName: "Gabby L. Garcia",
     testCategory: TEST_CATEGORIES[3],
     requestedAt: "May 17, 2026 · 12:15",
+    status: "Result Pending",
+    clinicalDetails: "",
   },
   {
     id: "req-3",
@@ -120,6 +124,8 @@ export const MOCK_PENDING_REQUESTS: PendingLabRequest[] = [
     patientName: "Gabino R. Bautista",
     testCategory: TEST_CATEGORIES[2],
     requestedAt: "May 17, 2026 · 10:51",
+    status: "Result Pending",
+    clinicalDetails: "",
   },
   {
     id: "req-4",
@@ -127,6 +133,8 @@ export const MOCK_PENDING_REQUESTS: PendingLabRequest[] = [
     patientName: "Gabrielle M. Santos",
     testCategory: TEST_CATEGORIES[4],
     requestedAt: "May 17, 2026 · 08:46",
+    status: "Result Pending",
+    clinicalDetails: "",
   },
   {
     id: "req-5",
@@ -134,6 +142,8 @@ export const MOCK_PENDING_REQUESTS: PendingLabRequest[] = [
     patientName: "Gabrielle M. Santos",
     testCategory: TEST_CATEGORIES[0],
     requestedAt: "May 16, 2026 · 14:22",
+    status: "Result Pending",
+    clinicalDetails: "",
   },
 ];
 

@@ -13,6 +13,7 @@ import {
   MOCK_FILE_HISTORY,
   MOCK_PENDING_REQUESTS,
   MOCK_RECENT_RESULTS,
+  TEST_CATEGORIES,
   searchMockPatients,
 } from "@/features/staff/workstation.mockData";
 import type {
@@ -200,22 +201,45 @@ export default function StaffDashboardPage() {
         isOpen={isNewRequestModalOpen}
         onClose={() => setIsNewRequestModalOpen(false)}
         initialPatient={selectedPatient}
-        onCreateRequest={({ patient, testCategoryId }) => {
-          void patient;
-          void testCategoryId;
+        onCreateRequest={({ patient, clinicalDetails, testCategoryId }) => {
+          const category = TEST_CATEGORIES.find(
+            (item) => item.id === testCategoryId,
+          );
+
+          if (!category) return;
+
+          const newRequest: PendingLabRequest = {
+            id: `req-${Date.now()}`,
+            patientId: patient.patientId,
+            patientName: patient.fullName,
+            testCategory: category,
+            requestedAt: "Just now",
+            status: "Requested",
+            clinicalDetails,
+          };
+
+          setPendingRequests((prev) => [newRequest, ...prev]);
+          setSelectedPatient(patient);
         }}
-        onSaveAsPending={({ patient, testCategoryId }) => {
-          const category = pendingRequests[0]?.testCategory; // placeholder lookup
-          setPendingRequests((prev) => [
-            {
-              id: `req-${Date.now()}`,
-              patientId: patient.patientId,
-              patientName: patient.fullName,
-              testCategory: category ?? { id: testCategoryId, name: testCategoryId },
-              requestedAt: "Just now",
-            },
-            ...prev,
-          ]);
+        onSaveAsPending={({ patient, clinicalDetails, testCategoryId }) => {
+          const category = TEST_CATEGORIES.find(
+            (item) => item.id === testCategoryId,
+          );
+
+          if (!category) return;
+
+          const newRequest: PendingLabRequest = {
+            id: `req-${Date.now()}`,
+            patientId: patient.patientId,
+            patientName: patient.fullName,
+            testCategory: category,
+            requestedAt: "Just now",
+            status: "Result Pending",
+            clinicalDetails,
+          };
+
+          setPendingRequests((prev) => [newRequest, ...prev]);
+          setSelectedPatient(patient);
         }}
       />
 
