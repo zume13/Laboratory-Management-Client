@@ -9,9 +9,10 @@ interface PendingQueueModalProps {
   onClose: () => void;
   requests: PendingLabRequest[];
   onDeleteRequest: (requestId: string) => void;
+  onSelectRequest: (requestId: string) => void;
 }
 
-export function PendingQueueModal({ isOpen, onClose, requests, onDeleteRequest }: PendingQueueModalProps) {
+export function PendingQueueModal({ isOpen, onClose, requests, onDeleteRequest, onSelectRequest }: PendingQueueModalProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
@@ -23,6 +24,7 @@ export function PendingQueueModal({ isOpen, onClose, requests, onDeleteRequest }
               <th className="px-6 py-3">Date/Time</th>
               <th className="px-6 py-3">Name</th>
               <th className="px-6 py-3">Test Category</th>
+              <th className="px-6 py-3">Status</th>
               <th className="w-10" />
             </tr>
           </thead>
@@ -35,24 +37,51 @@ export function PendingQueueModal({ isOpen, onClose, requests, onDeleteRequest }
                     onClick={() => setExpandedId(isExpanded ? null : request.id)}
                     className="cursor-pointer transition-colors hover:bg-gray-50"
                   >
-                    <td className="px-6 py-3 text-xs text-gray-500">{request.requestedAt}</td>
+                    <td className="px-6 py-3 text-xs text-gray-500">
+                      {request.requestedAt}
+                    </td>
+
                     <td className="px-6 py-3">
                       <p className="font-medium text-gray-900">{request.patientName}</p>
                       <p className="text-xs text-gray-400">{request.patientId}</p>
                     </td>
-                    <td className="px-6 py-3">
+
+                    <td className="whitespace-nowrap px-6 py-3">
                       <TestCategoryBadge category={request.testCategory} />
                     </td>
+
+                    <td className="whitespace-nowrap px-6 py-3">
+                      <span
+                        className={`inline-block rounded-md px-2 py-1 text-xs font-semibold ${
+                          request.status === "Ready for Release"
+                            ? "bg-green-50 text-green-700"
+                            : request.status === "Requested"
+                              ? "bg-blue-50 text-blue-700"
+                              : "bg-amber-50 text-amber-700"
+                        }`}
+                      >
+                        {request.status}
+                      </span>
+                    </td>
+
                     <td className="px-6 py-3 text-gray-400">
-                      {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                      {isExpanded ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
                     </td>
                   </tr>
                   {isExpanded && (
                     <tr className="bg-gray-50">
-                      <td colSpan={4} className="px-6 py-4">
+                      <td colSpan={5} className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <button
                             type="button"
+                            onClick={() => {
+                              onSelectRequest(request.id);
+                              onClose();
+                            }}
                             className="flex flex-1 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-600 hover:border-green-400 hover:text-green-700"
                           >
                             <UploadCloud className="h-4 w-4" />
