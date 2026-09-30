@@ -31,7 +31,7 @@ export default function StaffDashboardPage() {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 
   // Patient file history
-  const [fileHistory] = useState<PatientFileHistoryEntry[]>(MOCK_FILE_HISTORY);
+  const [fileHistory, setFileHistory] = useState<PatientFileHistoryEntry[]>(MOCK_FILE_HISTORY);
 
   // Upload & filling controls state
   const [pendingRequests, setPendingRequests] = useState<PendingLabRequest[]>(MOCK_PENDING_REQUESTS);
@@ -67,36 +67,79 @@ export default function StaffDashboardPage() {
     setSearchQuery("");
   }
 
+  function handleFileSelected(file: UploadedFile) {
+  setUploadedFile(file);
+
+  if (!selectedRequestId) return;
+
+  setPendingRequests((prev) =>
+    prev.map((request) =>
+      request.id === selectedRequestId
+        ? {
+            ...request,
+            status: "Ready for Release",
+          }
+        : request,
+    ),
+  );
+}
+
   async function handleReleaseResult() {
     if (!uploadedFile || !selectedRequestId) return;
-    const request = pendingRequests.find((r) => r.id === selectedRequestId);
+
+    const request = pendingRequests.find(
+      (item) => item.id === selectedRequestId,
+    );
+
     if (!request) return;
 
     setIsReleasing(true);
+    
     try {
       await new Promise((resolve) => setTimeout(resolve, 600));
 
+      const now = new Date();
+
+      const releasedAt = now.toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      });
+
+      const dateTime = now.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+
+      const resultId = `res-${Date.now()}`;
+
+      // Add to Recently Released Results
       setRecentResults((prev) => [
         {
-          id: `res-${Date.now()}`,
-          dateTime: new Date().toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }),
+          id: resultId,
+          dateTime,
           patientName: request.patientName,
           patientId: request.patientId,
           testCategory: request.testCategory,
           releasedBy: "J.D. Muffin, RMT",
-          releasedAt: new Date().toLocaleString(undefined, {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-          }),
+          releasedAt,
         },
         ...prev,
       ]);
-      setPendingRequests((prev) => prev.filter((r) => r.id !== selectedRequestId));
+
+      //Remove the request from Pending Queue
+      setPendingRequests((prev) => 
+        prev.filter((item) => item.id !== selectedRequestId),
+      );
+
+      // Show success modal
       setJustReleasedFile(uploadedFile);
       setIsUploadSuccessOpen(true);
+
+      // Clear upload state
       setUploadedFile(null);
       setSelectedRequestId(null);
     } finally {
@@ -182,7 +225,7 @@ export default function StaffDashboardPage() {
           selectedRequestId={selectedRequestId}
           onSelectRequest={setSelectedRequestId}
           uploadedFile={uploadedFile}
-          onFileSelected={setUploadedFile}
+          onFileSelected={handleFileSelected}
           onFileRemoved={() => setUploadedFile(null)}
           onRelease={handleReleaseResult}
           isReleasing={isReleasing}
@@ -248,6 +291,7 @@ export default function StaffDashboardPage() {
         onClose={() => setIsPendingQueueOpen(false)}
         requests={pendingRequests}
         onDeleteRequest={handleDeletePendingRequest}
+        onSelectRequest={setSelectedRequestId}
       />
 
       <UploadSuccessModal
